@@ -1,0 +1,25 @@
+# Git attributes для проекта Accepted
+
+# Автоматически определять конец строки
+* text=auto
+
+# Нормализовать конец строки для текстовых файлов
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.php text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+
+# Бинарные файлы
+*.svg binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+
+# Игнорировать изменения в правах доступа
+*.sh text eol=lf
