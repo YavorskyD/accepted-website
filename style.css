@@ -430,9 +430,8 @@ section {
 
 /* Контакты */
 .contact-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
 }
 
 .contact-form {
@@ -738,6 +737,52 @@ footer {
         grid-template-columns: 1fr;
         text-align: center;
     }
+
+    /* Адаптация контактов для мобильных */
+    .contact-section {
+        gap: var(--spacing-md);
+    }
+
+    .contact-section-inner {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .contact-info {
+        gap: 20px;
+        margin-top: var(--spacing-md);
+    }
+
+    .contact-item {
+        padding: 20px;
+    }
+
+    .contact-item h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .contact-item p,
+    .contact-item a {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .map-container {
+        height: 300px;
+        margin-top: var(--spacing-md);
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        border-radius: 5px;
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
 }
 
 @media (max-width: 480px) {
@@ -762,6 +807,63 @@ footer {
 
     .service-card {
         padding: 30px;
+    }
+
+    /* Дополнительная адаптация контактов для маленьких экранов */
+    .contact-section {
+        gap: var(--spacing-sm);
+    }
+
+    .contact-section-inner {
+        gap: var(--spacing-sm);
+    }
+
+    .contact-form {
+        gap: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 16px; /* Предотвращает zoom на iOS */
+    }
+
+    .contact-item {
+        padding: 15px;
+    }
+
+    .contact-item h3 {
+        font-size: 18px;
+    }
+
+    .contact-item p,
+    .contact-item a {
+        font-size: 14px;
+    }
+
+    .map-container {
+        height: 250px;
+        margin-top: var(--spacing-sm);
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .contact-info {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .contact-form {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .btn {
+        padding: 15px 30px;
+        font-size: 16px;
+        width: 100%; /* Кнопка на всю ширину на мобильных */
     }
 }
 
@@ -847,6 +949,9 @@ footer {
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-lg);
     margin-top: var(--spacing-md);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .contact-note {
