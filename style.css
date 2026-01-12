@@ -775,36 +775,39 @@ footer {
 
     .contact-section-inner {
         grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+        gap: var(--spacing-lg);
+        display: flex;
+        flex-direction: column;
     }
 
+    /* Форма контактов - первая на мобильных */
+    .contact-form {
+        order: 1;
+        width: 100%;
+        margin-bottom: var(--spacing-md);
+    }
+
+    /* Контактная информация - вторая на мобильных (только телефоны, email, адрес) */
     .contact-info {
-        gap: 20px;
-        margin-top: var(--spacing-md);
+        order: 2;
+        gap: 15px;
+        margin-top: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
-    .contact-item {
-        padding: 20px;
-    }
-
-    .contact-item h3 {
-        font-size: 20px;
-        margin-bottom: 10px;
-    }
-
-    .contact-item p,
-    .contact-item a {
-        font-size: 16px;
-        line-height: 1.6;
-    }
-
+    /* Карта - отдельно, последняя (третья) */
     .map-container {
+        order: 3;
         height: 300px;
         margin-top: var(--spacing-md);
         width: 100%;
         max-width: 100%;
         overflow: hidden;
         border-radius: 5px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .map-container iframe {
@@ -812,6 +815,21 @@ footer {
         height: 100%;
         border: none;
         display: block;
+    }
+
+    .contact-item {
+        padding: 20px 15px;
+    }
+
+    .contact-item h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .contact-item p,
+    .contact-item a {
+        font-size: 15px;
+        line-height: 1.6;
     }
 }
 
@@ -870,14 +888,21 @@ footer {
     /* Дополнительная адаптация контактов для маленьких экранов */
     .contact-section {
         gap: var(--spacing-sm);
+        padding: var(--spacing-sm) 5%;
     }
 
     .contact-section-inner {
-        gap: var(--spacing-sm);
+        gap: var(--spacing-md);
+        display: flex;
+        flex-direction: column;
     }
 
+    /* Форма - первая */
     .contact-form {
-        gap: 20px;
+        order: 1;
+        gap: 18px;
+        width: 100%;
+        margin-bottom: var(--spacing-md);
     }
 
     .form-group input,
@@ -886,36 +911,40 @@ footer {
         font-size: 16px; /* Предотвращает zoom на iOS */
     }
 
+    /* Контактная информация - вторая */
+    .contact-info {
+        order: 2;
+        gap: 12px;
+        width: 100%;
+        margin-top: 0;
+    }
+
     .contact-item {
-        padding: 15px;
+        padding: 15px 12px;
     }
 
     .contact-item h3 {
-        font-size: 18px;
+        font-size: 16px;
+        margin-bottom: 8px;
     }
 
     .contact-item p,
     .contact-item a {
         font-size: 14px;
+        line-height: 1.5;
     }
 
-    .map-container {
+    /* Карта - третья, отдельно внизу */
+    .contact-section-inner > .map-container {
+        order: 3;
         height: 250px;
-        margin-top: var(--spacing-sm);
-        width: 100%;
-        max-width: 100%;
+        margin-top: 0;
         margin-left: 0;
         margin-right: 0;
-    }
-
-    .contact-info {
         width: 100%;
         max-width: 100%;
-    }
-
-    .contact-form {
-        width: 100%;
-        max-width: 100%;
+        grid-column: 1;
+        grid-row: auto;
     }
 
     .btn {
@@ -1013,6 +1042,15 @@ footer {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+}
+
+/* Карта на десктопе - справа от формы и контактов */
+.contact-section-inner > .map-container {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    height: 100%;
+    min-height: 400px;
 }
 
 .contact-note {
