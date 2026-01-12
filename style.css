@@ -1,6 +1,7 @@
 /* ========================================
-   ACCEPTED - Стили в стиле archinform.ru
-   Минимализм, тёмный фон, крупные шрифты
+   ACCEPTED - Минималистичный дизайн
+   Вдохновлено archidica.com
+   Чёрный фон, белые акценты, элегантная типографика
    ======================================== */
 
 /* === Сброс и базовые стили === */
@@ -12,12 +13,13 @@
 
 :root {
     --bg-dark: #000;
-    --bg-dark-alt: #111;
+    --bg-dark-alt: #0a0a0a;
     --text-white: #fff;
-    --text-gray: #ddd;
-    --text-gray-light: #aaa;
-    --accent-blue: #007BFF;
-    --accent-blue-hover: #0056b3;
+    --text-gray: #e0e0e0;
+    --text-gray-light: #999;
+    --accent: #fff;
+    --accent-hover: #f5f5f5;
+    --accent-subtle: rgba(255, 255, 255, 0.1);
     --spacing-xl: 200px;
     --spacing-lg: 150px;
     --spacing-md: 100px;
@@ -39,32 +41,38 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-white);
     font-size: var(--font-body);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* === Типографика === */
 h1 {
     font-size: var(--font-h1);
-    font-weight: 700;
+    font-weight: 300;
     line-height: 1.1;
     margin-bottom: var(--spacing-sm);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
 }
 
 h2 {
     font-size: var(--font-h2);
-    font-weight: 600;
+    font-weight: 300;
     line-height: 1.2;
     margin-bottom: var(--spacing-sm);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    font-size: clamp(28px, 4vw, 48px);
+    letter-spacing: 0.1em;
 }
 
 h3 {
     font-size: var(--font-h3);
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1.3;
     margin-bottom: calc(var(--spacing-sm) / 2);
+    letter-spacing: 0.05em;
 }
 
 p {
@@ -79,7 +87,8 @@ a {
 }
 
 a:hover {
-    color: var(--accent-blue);
+    color: var(--accent);
+    opacity: 0.8;
 }
 
 /* === Хедер === */
@@ -89,13 +98,13 @@ header {
     left: 0;
     right: 0;
     z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
-    padding: 20px 5%;
+    padding: 25px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .logo {
@@ -129,11 +138,17 @@ nav ul {
 }
 
 nav a {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.15em;
     position: relative;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+nav a:hover {
+    opacity: 1;
 }
 
 nav a::after {
@@ -142,8 +157,8 @@ nav a::after {
     bottom: -5px;
     left: 0;
     width: 0;
-    height: 2px;
-    background-color: var(--accent-blue);
+    height: 1px;
+    background-color: var(--accent);
     transition: var(--transition);
 }
 
@@ -209,13 +224,16 @@ section {
 }
 
 .hero .subtitle {
-    font-size: clamp(20px, 3vw, 28px);
+    font-size: clamp(18px, 2.5vw, 24px);
     color: var(--text-gray);
     margin-bottom: var(--spacing-lg);
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     animation: fadeInUp 1s ease 0.2s both;
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
 }
 
 .services-list {
@@ -228,37 +246,39 @@ section {
 }
 
 .services-list li {
-    padding: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.02);
+    padding: 40px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: transparent;
     transition: var(--transition);
     cursor: pointer;
+    text-align: left;
 }
 
 .services-list li:hover {
-    border-color: var(--accent-blue);
+    border-color: var(--accent);
     transform: translateY(-5px);
-    background-color: rgba(0, 123, 255, 0.05);
+    background-color: var(--accent-subtle);
 }
 
 .services-list li::before {
     content: '→';
     margin-right: 10px;
-    color: var(--accent-blue);
+    color: var(--accent);
     font-weight: bold;
+    opacity: 0.7;
 }
 
 /* Кнопки */
 .btn {
     display: inline-block;
     padding: 18px 40px;
-    background-color: var(--accent-blue);
+    background-color: transparent;
     color: var(--text-white);
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border: none;
+    letter-spacing: 0.15em;
+    border: 1px solid var(--accent);
     cursor: pointer;
     transition: var(--transition);
     text-align: center;
@@ -267,20 +287,20 @@ section {
 }
 
 .btn:hover {
-    background-color: var(--accent-blue-hover);
+    background-color: var(--accent);
+    color: var(--bg-dark);
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
 }
 
 .btn-outline {
     background-color: transparent;
-    border: 2px solid var(--accent-blue);
-    color: var(--accent-blue);
+    border: 1px solid var(--accent);
+    color: var(--accent);
 }
 
 .btn-outline:hover {
-    background-color: var(--accent-blue);
-    color: var(--text-white);
+    background-color: var(--accent);
+    color: var(--bg-dark);
 }
 
 /* Проекты - горизонтальный скролл */
@@ -309,8 +329,9 @@ section {
 }
 
 .projects-container::-webkit-scrollbar-thumb {
-    background: var(--accent-blue);
+    background: var(--accent);
     border-radius: 4px;
+    opacity: 0.5;
 }
 
 .project-card {
@@ -319,9 +340,10 @@ section {
     height: 600px;
     position: relative;
     overflow: hidden;
-    background-color: var(--bg-dark-alt);
+    background-color: var(--bg-dark);
     cursor: pointer;
     transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .project-card img {
@@ -332,7 +354,8 @@ section {
 }
 
 .project-card:hover img {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    opacity: 0.7;
 }
 
 .project-overlay {
@@ -340,7 +363,7 @@ section {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
     padding: 40px;
     transform: translateY(50%);
     transition: var(--transition);
@@ -382,14 +405,16 @@ section {
 }
 
 .subsection {
-    padding: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.02);
+    padding: 50px 40px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: transparent;
 }
 
 .subsection h3 {
     margin-bottom: 20px;
-    color: var(--accent-blue);
+    color: var(--accent);
+    font-weight: 400;
+    letter-spacing: 0.1em;
 }
 
 /* Услуги */
@@ -401,16 +426,16 @@ section {
 }
 
 .service-card {
-    padding: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.02);
+    padding: 60px 50px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: transparent;
     transition: var(--transition);
 }
 
 .service-card:hover {
-    border-color: var(--accent-blue);
+    border-color: var(--accent);
     transform: translateY(-10px);
-    background-color: rgba(0, 123, 255, 0.05);
+    background-color: var(--accent-subtle);
 }
 
 .service-icon {
@@ -491,8 +516,8 @@ section {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
 }
 
 .form-group textarea {
@@ -507,14 +532,18 @@ section {
 }
 
 .contact-item {
-    padding: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(255, 255, 255, 0.02);
+    padding: 40px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: transparent;
 }
 
 .contact-item h3 {
     margin-bottom: 15px;
-    color: var(--accent-blue);
+    color: var(--accent);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 14px;
 }
 
 .contact-item p,
@@ -585,8 +614,9 @@ footer {
 }
 
 .social-links a:hover {
-    border-color: var(--accent-blue);
-    background-color: var(--accent-blue);
+    border-color: var(--accent);
+    background-color: var(--accent);
+    color: var(--bg-dark);
     transform: translateY(-3px);
 }
 
@@ -809,6 +839,34 @@ footer {
         padding: 30px;
     }
 
+    /* Cookie уведомление на мобильных */
+    .cookie-notice {
+        padding: 20px 5%;
+    }
+
+    .cookie-notice-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .cookie-text {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .cookie-buttons {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .btn-cookie {
+        flex: 1;
+        min-width: 120px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
     /* Дополнительная адаптация контактов для маленьких экранов */
     .contact-section {
         gap: var(--spacing-sm);
@@ -915,7 +973,9 @@ footer {
 
 .project-detail-content h2 {
     margin-bottom: 20px;
-    color: var(--accent-blue);
+    color: var(--accent);
+    font-weight: 400;
+    letter-spacing: 0.05em;
 }
 
 .project-info {
@@ -937,11 +997,12 @@ footer {
 }
 
 .project-features li::before {
-    content: '✓';
+    content: '—';
     position: absolute;
     left: 0;
-    color: var(--accent-blue);
-    font-weight: bold;
+    color: var(--accent);
+    font-weight: 300;
+    opacity: 0.6;
 }
 
 .contact-section-inner {
@@ -962,6 +1023,86 @@ footer {
 
 .contact-extra {
     margin-top: var(--spacing-lg);
+}
+
+/* Cookie уведомление */
+.cookie-notice {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-dark-alt);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px 5%;
+    z-index: 10000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.cookie-notice.show {
+    transform: translateY(0);
+}
+
+.cookie-notice-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.cookie-text {
+    flex: 1;
+    min-width: 250px;
+    color: var(--text-gray);
+    font-size: var(--font-body);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-cookie {
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.btn-cookie-accept {
+    background-color: var(--accent);
+    color: var(--bg-dark);
+    border: 1px solid var(--accent);
+}
+
+.btn-cookie-accept:hover {
+    background-color: transparent;
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.btn-cookie-decline {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-white);
+}
+
+.btn-cookie-decline:hover {
+    border-color: var(--text-white);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Утилиты */

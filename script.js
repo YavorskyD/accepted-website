@@ -16,6 +16,7 @@
         initFormHandling();
         initParallax();
         initLazyLoading();
+        initCookieNotice();
     });
 
     // ========================================
@@ -313,11 +314,11 @@
         if (!header) return;
 
         if (window.scrollY > 100) {
-            header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
+            header.style.backgroundColor = 'rgba(0, 0, 0, 0.98)';
+            header.style.borderBottomColor = 'rgba(255, 255, 255, 0.1)';
         } else {
-            header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-            header.style.boxShadow = 'none';
+            header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+            header.style.borderBottomColor = 'rgba(255, 255, 255, 0.05)';
         }
     });
 
@@ -344,6 +345,46 @@
         document.addEventListener('DOMContentLoaded', addFadeInClass);
     } else {
         addFadeInClass();
+    }
+
+    // ========================================
+    // Cookie уведомление
+    // ========================================
+    function initCookieNotice() {
+        const cookieNotice = document.getElementById('cookieNotice');
+        const acceptBtn = document.getElementById('acceptCookies');
+        const declineBtn = document.getElementById('declineCookies');
+
+        if (!cookieNotice || !acceptBtn || !declineBtn) return;
+
+        // Проверяем, было ли уже принято решение
+        const cookieConsent = localStorage.getItem('cookieConsent');
+        
+        if (!cookieConsent) {
+            // Показываем уведомление через небольшую задержку
+            setTimeout(() => {
+                cookieNotice.classList.add('show');
+            }, 1000);
+        }
+
+        // Обработка принятия cookies
+        acceptBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            hideCookieNotice();
+        });
+
+        // Обработка отклонения cookies
+        declineBtn.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'declined');
+            hideCookieNotice();
+        });
+
+        function hideCookieNotice() {
+            cookieNotice.classList.remove('show');
+            setTimeout(() => {
+                cookieNotice.style.display = 'none';
+            }, 300);
+        }
     }
 
 })();
